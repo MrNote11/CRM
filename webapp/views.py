@@ -1,5 +1,8 @@
 from django.shortcuts import render
+import pathlib
 
-def home(request, *args, **kwargs):
-    return render(request, 'home.html')
-# Create your views here.
+
+this_dir = pathlib.Path(__file__).resolve().parent
+def home(request):
+    home_html = "home.html"
+    return render(request, home_html)
