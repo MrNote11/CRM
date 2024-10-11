@@ -1,0 +1,93 @@
+#Create a virtual enviroment
+ python -m venv ______
+
+#Activatin in terminal
+ source __/Scripts/activate
+          
+        OR
+
+#Activate in vscode
+ ctrl + shift + p
+
+## install django and mysql using pip with mysql-connector-python using 
+requirements.txt 
+
+#Create a folder name requirements.txt 
+  django
+  mysql
+  mysql-connector-python
+  
+#Activate the file
+  pip install -r requirements.txt
+
+#Start a django project
+  Django-admin startproject ______
+
+## cd into the project once and not twice, and create a app
+
+#Create a Django app
+  Django-admin startapp ______
+         
+         or 
+
+  python manage.py startapp _____  
+
+## go to settings.py in the the start project
+documnet folder you created.
+
+ #Edit the following
+     #INSTALLED_APPS[]
+         ##Add the startapp folder name inside
+          the INSTALLED_APPS list in str ''.
+
+     #DATABASES
+         #DATABASES{{}}
+             ## Edit the default dict into this:
+                "ENGINE": "django.db.backends.mysql",
+                
+                "NAME": 'newbie', #give it what u like.
+
+                "USER": 'root', #your mysql username.
+
+                "PASSWORD": 'MrNote11', #give it your own mysql *password*
+
+                "HOST": 'localhost', #give it your mysql hostname which is for sure localhost
+
+                "PORT": '3306', #This is everyone port Id, but u can change it by visitin youtube to learn more.
+
+
+##Create a db.py file in the same file as manage.py. Dont create it inside the startproject or app folders.
+
+# mydb.py file
+  import mysql.connector
+
+  database = mysql.connector.connect(host = 'localhost', #use your host name
+
+                                    user = 'root', #use your username
+
+                                    password= 'MrNote11', #use your own password
+                                    )
+
+  CursorObject = database.cursor()
+
+  CursorObject.execute("CREATE DATABASE newbie")
+
+  print("All Done")
+
+
+# Push into the Django_Database execution code in the terminal.
+   python manage.py migarate
+
+# Create a super admin
+     winpty python manage.py createsuperuser
+             
+               or 
+
+     python manage.py createsuperuser
+
+# Run Django server
+     python manage.py runserver 80
+
+                  or 
+
+     python manage.py runserver                   
