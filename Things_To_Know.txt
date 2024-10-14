@@ -90,4 +90,14 @@ documnet folder you created.
 
                   or 
 
-     python manage.py runserver                   
+     python manage.py runserver  
+
+##Setup ur base.html and home.html, and go to
+bootstrap css and go to venture to "Docs tag"
+and copy 2.include Bootstrap Css and js Terminal.
+
+##You can visit bootstrap for css and javascripts items.
+
+
+#
+
