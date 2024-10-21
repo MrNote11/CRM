@@ -1,38 +1,24 @@
-<!-- let base.html inherit from this code -->
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-<!-- This the only to be inherit-->
 {% block content %}
 <div class="col-md-6 offset-md-3">
+<h1>Login</h1>
+<br/>
 
-   <!-- for checking user.is_authentication using if -->
-  {% if user.is_authenticated %}
-  
-    <p>Good Morning my neighbour</p>
-  <!-- else function -->
-    {% else %}    
-    <p>Login</p>
-    <br/>
+<form method="POST" action="{% url 'home' %}">
+	{% csrf_token %}
 
-    <!-- for creating a form and linking to the home url -->
-    <form method="POST" action="{% url 'home' %}">
-      {% csrf_token %}
-      <div class="mb-3">
+  <div class="mb-3">
+    <input type="text" class="form-control" name="username", placeholder="Username" required>
+    
+  </div><br/>
+  <div class="mb-3">
+    <input type="password" class="form-control" name="password", placeholder="Password" required>
+  </div>
+  <br/>
+  <button type="submit" class="btn btn-secondary">Login</button>
 
-        <!-- variable name of the username body -->
-        <input type="text" class="form-control" name="username" placeholder="User_Name" required>
-        <br/>
-      </div>
-      <div class="mb-3">
+</form>
 
-        <!-- varaiable name of the Password_Body -->
-        <input type="password" class="form-control" name="password" placeholder="Password" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-  {% endif %}
-  <!-- End the if function -->
 
-</div>
 {% endblock %}
-<!-- end the block -->
