@@ -99,5 +99,13 @@ and copy 2.include Bootstrap Css and js Terminal.
 ##You can visit bootstrap for css and javascripts items.
 
 
-#
+##When you setup your create what your data can accept in the
+models.py file
+
+
+# Run the makemigration
+
+   python manage.py makemigrations
+
+   python manage.py migrate
 

@@ -3,43 +3,41 @@ from django.contrib.auth.models import User
 from django import forms
 from .models import Record
 
-
-class Helper_Function:
-    def Field_Structure(self, field_name, placeholder):
+class HelperFunction:
+    def field_structure(self, field_name, placeholder):
         self.fields[field_name].widget.attrs.update(
             {"class": "form-control", "placeholder": placeholder}
         )
         self.fields[field_name].label = ""
 
 
-class SignupForms(UserCreationForm, Helper_Function):
-
-    Email = forms.EmailField(
-        widget=forms.TextInput(attr={"class": "form-control", "placeholder": "Email"})
+class SignUpForm(UserCreationForm, HelperFunction):
+    email = forms.EmailField(
+        widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Email"})
     )
-    First_Name = forms.EmailField(
+    first_name = forms.CharField(
         max_length=100,
         widget=forms.TextInput(
-            attr={"class": "forms-control", "placeholder": "First_Name"}
+            attrs={"class": "form-control", "placeholder": "First Name"}
         ),
     )
-    Last_Name = forms.EmailField(
+    last_name = forms.CharField(
         max_length=100,
         widget=forms.TextInput(
-            attr={"class": "forms-control", "placeholder": "Second_Name"}
+            attrs={"class": "form-control", "placeholder": "Last Name"}
         ),
     )
 
-    class meta:
+    class Meta:
         model = User
-        fields = ("username", "firstname", "secondname", "password1", "password2")
+        fields = ("username", "first_name", "last_name", "email", "password1", "password2")
 
     def __init__(self, *args, **kwargs):
-        super(self, SignupForms).__init__(*args, *kwargs)
+        super().__init__(*args, **kwargs)
 
-        self.Field_Structure("username", "User Name")
-        self.Field_Structure("password1", "password")
-        self.Field_Structure("password2", "Confirm Password")
+        self.field_structure("username", "User Name")
+        self.field_structure("password1", "Password")
+        self.field_structure("password2", "Confirm Password")
         
         self.fields['username'].help_text = (
             '<span class="form-text text-muted">'
@@ -58,4 +56,19 @@ class SignupForms(UserCreationForm, Helper_Function):
             '<small>Enter the same password as before, for verification.</small></span>'
         )
 
-        
+
+
+# Create Add Record Form
+class AddRecordForm(forms.ModelForm):
+	first_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"First Name", "class":"form-control"}), label="")
+	last_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Last Name", "class":"form-control"}), label="")
+	email = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Email", "class":"form-control"}), label="")
+	phone = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Phone", "class":"form-control"}), label="")
+	address = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Address", "class":"form-control"}), label="")
+	city = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"City", "class":"form-control"}), label="")
+	state = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"State", "class":"form-control"}), label="")
+	zipcode = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Zipcode", "class":"form-control"}), label="")
+
+	class Meta:
+		model = Record
+		exclude = ("user",)
